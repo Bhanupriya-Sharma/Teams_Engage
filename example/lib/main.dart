@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'src/index.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final Future<FirebaseApp> _app = Firebase.initializeApp();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -18,23 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: FutureBuilder(
-        future: _app,
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Text("ERROR");
-          } else if (snapshot.hasData) {
-            return IndexPage();
-          } else {
-            return Center(
-              child: CircularProgressIndicator(
-                  backgroundColor: Colors.white,
-                  color: Colors.deepPurple,
-                  strokeWidth: 4.0),
-            );
-          }
-        },
-      ),
+      home: IndexPage(),
     );
   }
 }

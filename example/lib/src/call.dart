@@ -3,23 +3,20 @@ import 'dart:async';
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:agora_rtc_engine/rtc_local_view.dart' as RtcLocalView;
 import 'package:agora_rtc_engine/rtc_remote_view.dart' as RtcRemoteView;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'settings.dart';
-import 'DocFirestoreSearch.dart' as DFS;
 
 class CallPage extends StatefulWidget {
   /// non-modifiable channel name and password of the page
   final String? channelName;
-  final String? password;
+  //final String? password;
 
   /// non-modifiable client role of the page (parameters used in Agora)
   final ClientRole? role;
 
   /// Creates a call page with given channel name (MeetingID) and password.
-  const CallPage({Key? key, this.channelName, this.password, this.role})
-      : super(key: key);
+  const CallPage({Key? key, this.channelName, this.role}) : super(key: key);
 
   @override
   _CallPageState createState() => _CallPageState();
@@ -65,26 +62,24 @@ class _CallPageState extends State<CallPage> {
     VideoEncoderConfiguration configuration = VideoEncoderConfiguration();
     configuration.dimensions = VideoDimensions(1920, 1080);
     await _engine.setVideoEncoderConfiguration(configuration);
-    if (checkCredentials(widget.channelName, widget.password)) {
-      await _engine.joinChannel(Token, widget.channelName!, null, 0);
-    }
+    await _engine.joinChannel(Token, widget.channelName!, null, 0);
   }
 
-  bool checkCredentials(String? MeetingID, String? Password) {
-    bool result = true;
-
-    ///false;
-
-    ///code to check if meetingID and password are correct
-    Future<QuerySnapshot> snap = DFS.Document().getData(MeetingID!, Password!);
-    if (snap.toString().compareTo(widget.password!) == 0) {
-      result = true;
-    } else {
-      showAlertDialog(context);
-      result = false;
-    }
-    return result;
-  }
+  // bool checkCredentials(String? MeetingID, String? Password) {
+  //   bool result = true;
+  //
+  //   ///false;
+  //
+  //   ///code to check if meetingID and password are correct
+  //   // Future<QuerySnapshot> snap = DFS.Document().getData(MeetingID!, Password!);
+  //   // if (snap.toString().compareTo(widget.password!) == 0) {
+  //   //   result = true;
+  //   // } else {
+  //   //   showAlertDialog(context);
+  //   //   result = false;
+  //   // }
+  //   return result;
+  // }
 
   /// Creating agora sdk instance and initialize
   Future<void> _initAgoraRtcEngine() async {
@@ -136,33 +131,6 @@ class _CallPageState extends State<CallPage> {
         });
       },
     ));
-  }
-
-  showAlertDialog(BuildContext context) {
-    // set up the button
-    Widget okButton = FlatButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.pop(context);
-      },
-    );
-
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text("ERROR"),
-      content: Text("Invalid Password or ID"),
-      actions: [
-        okButton,
-      ],
-    );
-
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
   }
 
   @override
