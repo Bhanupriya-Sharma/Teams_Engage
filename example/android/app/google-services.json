@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "971639359896",
+    "project_id": "video-88d27",
+    "storage_bucket": "video-88d27.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971639359896:android:b21335975491fc0b6e83ed",
+        "android_client_info": {
+          "package_name": "io.agora.agora_rtc_engine_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971639359896-htk0957e69ojkbuhmpu6s6fatonad3jr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDm1VECpjNgmI2EcqbOL139NQ0PCBzjh2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971639359896-htk0957e69ojkbuhmpu6s6fatonad3jr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
