@@ -7,4 +7,5 @@
 ##### In the example folder, all the files related to project can be seen.
 ##### Files outside this folder, are of Agora SDK, on which the App is built.
 
-
+### Link to screenshots of the app
+##### https://drive.google.com/folderview?id=1GhVgwCGFwkEBT6m8wTa5NgL8tIpSHKQO
