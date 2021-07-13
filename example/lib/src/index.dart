@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import './call.dart';
+import './Drawer.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -31,23 +32,23 @@ class IndexState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
+          backgroundColor: Colors.deepPurple,
+          title: Text(
+            'We-Link (Teams)',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        body: Center(
+          child: Stack(
+            children: <Widget>[
+              _mainView(),
+              _image(),
+            ],
+          ),
+        ),
         backgroundColor: Colors.white,
-        title: Text(
-          'We-Link (Teams)',
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-      body: Center(
-        child: Stack(
-          children: <Widget>[
-            _mainView(),
-            _image(),
-          ],
-        ),
-      ),
-      backgroundColor: Colors.white,
-    );
+        drawer: MyDrawer(name: "Bhanupriya"));
   }
 
   Widget _image() {
@@ -153,12 +154,6 @@ class IndexState extends State<IndexPage> {
     setState(() {
       _channelController.text = _code;
     });
-    // await Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => CreatePage(channelName: _code),
-    //   ),
-    // );
   }
 
   showAlertDialog(BuildContext context) {
@@ -200,7 +195,6 @@ class IndexState extends State<IndexPage> {
         MaterialPageRoute(
           builder: (context) => CallPage(
             channelName: _channelController.text,
-            // password: _passwordController.text,
             role: _role,
           ),
         ),

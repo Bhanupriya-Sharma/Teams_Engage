@@ -10,7 +10,6 @@ import 'settings.dart';
 class CallPage extends StatefulWidget {
   /// non-modifiable channel name and password of the page
   final String? channelName;
-  //final String? password;
 
   /// non-modifiable client role of the page (parameters used in Agora)
   final ClientRole? role;
